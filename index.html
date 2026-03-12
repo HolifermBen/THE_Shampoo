@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE Shampoo — Formula Explorer | Holiferm</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #0F6E56;
+    --teal-light: #E1F5EE;
+    --teal-mid: #1D9E75;
+    --teal-pale: #9FE1CB;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --green: #3B6D11;
+    --green-light: #EAF3DE;
+    --purple-light: #EEEDFE;
+    --purple: #3C3489;
+    --coral-light: #FAECE7;
+    --coral: #993C1D;
+    --pink-light: #FBEAF0;
+    --pink: #72243E;
+    --gray: #5F5E5A;
+    --gray-light: #F1EFE8;
+    --text: #1a1a18;
+    --text-muted: #6b6b66;
+    --text-faint: #9c9a92;
+    --border: rgba(0,0,0,0.1);
+    --border-strong: rgba(0,0,0,0.18);
+    --bg: #fafaf8;
+    --bg-card: #ffffff;
+    --bg-surface: #f4f3ef;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ─── Header ─── */
+  .site-header {
+    background: var(--teal);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+  }
+
+  .logo-dots {
+    display: grid;
+    grid-template-columns: repeat(5, 6px);
+    gap: 2.5px;
+  }
+
+  .logo-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+  }
+  .logo-dots span.bright { background: rgba(255,255,255,1); }
+  .logo-dots span.dim { background: rgba(255,255,255,0.25); }
+
+  .logo-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: -0.3px;
+  }
+
+  .header-badge {
+    font-size: 12px;
+    color: var(--teal-pale);
+    letter-spacing: 0.04em;
+    font-weight: 300;
+  }
+
+  /* ─── Hero ─── */
+  .hero {
+    background: linear-gradient(160deg, #0d5e48 0%, #0F6E56 40%, #1a8a6b 100%);
+    padding: 3rem 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 40px; right: 40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .hero-inner { max-width: 820px; margin: 0 auto; position: relative; }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--teal-pale);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--teal-pale);
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .hero-pill {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 400;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.08);
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── Main ─── */
+  .main { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+  /* ─── Phase section ─── */
+  .phase-section { margin-bottom: 1.25rem; }
+
+  .phase-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .phase-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .phase-circle {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .pa .phase-circle { background: var(--blue-light); color: var(--blue); }
+  .pb .phase-circle { background: var(--teal-light); color: var(--teal); }
+  .pc .phase-circle { background: var(--amber-light); color: var(--amber); }
+
+  .phase-head-text { flex: 1; }
+  .phase-head-title { font-size: 14px; font-weight: 500; color: var(--text); }
+  .phase-head-desc { font-size: 12px; color: var(--text-muted); }
+  .phase-head-note { font-size: 12px; color: var(--text-faint); margin-left: auto; white-space: nowrap; }
+
+  /* ─── Ingredient row ─── */
+  .ing-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.12s;
+    user-select: none;
+  }
+  .ing-row:last-of-type { border-bottom: none; }
+  .ing-row:hover { background: #f8f8f6; }
+  .ing-row.open { background: #f5f5f2; }
+
+  .ing-bar-wrap { width: 52px; flex-shrink: 0; }
+  .ing-bar-track { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .ing-bar-fill { height: 100%; border-radius: 3px; }
+  .pa .ing-bar-fill { background: #378ADD; }
+  .pb .ing-bar-fill { background: var(--teal-mid); }
+  .pc .ing-bar-fill { background: #EF9F27; }
+
+  .ing-pct { font-size: 12px; color: var(--text-muted); width: 38px; flex-shrink: 0; text-align: right; font-variant-numeric: tabular-nums; }
+
+  .ing-name { flex: 1; font-size: 14px; color: var(--text); font-weight: 400; }
+  .ing-star { color: var(--teal); font-size: 13px; margin-left: 4px; }
+
+  .tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 400;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+  }
+  .tag-surfactant { background: var(--green-light); color: var(--green); }
+  .tag-holisurf { background: var(--teal-light); color: var(--teal); border: 1px solid var(--teal-pale); }
+  .tag-solvent { background: var(--blue-light); color: var(--blue); }
+  .tag-thickener { background: var(--purple-light); color: var(--purple); }
+  .tag-humectant { background: #E1F5EE; color: #085041; }
+  .tag-preservative { background: #FCEBEB; color: #791F1F; }
+  .tag-fragrance { background: var(--amber-light); color: var(--amber); }
+  .tag-colour { background: var(--pink-light); color: var(--pink); }
+
+  .chevron {
+    font-size: 13px;
+    color: var(--text-faint);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .ing-row.open .chevron { transform: rotate(90deg); }
+
+  /* ─── Detail panel ─── */
+  .detail-panel {
+    display: none;
+    background: #f8f8f5;
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+  }
+  .detail-panel.open { display: block; }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border);
+  }
+
+  .dcell {
+    padding: 12px 18px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .dcell:nth-child(2n) { border-right: none; }
+  .dcell.full { grid-column: 1/-1; border-right: none; }
+  .dcell:last-child, .dcell:nth-last-child(2):not(.full) { border-bottom: none; }
+
+  .dlabel {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 5px;
+  }
+  .dval {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.55;
+  }
+
+  .origin-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+  .d-bio { background: var(--teal); }
+  .d-mineral { background: var(--gray); }
+  .d-synth { background: var(--purple); }
+
+  .hf-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--teal-light);
+    border: 1px solid var(--teal-pale);
+    border-radius: 20px;
+    padding: 2px 9px;
+    font-size: 11px;
+    color: var(--teal);
+    font-weight: 500;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* ─── Process section ─── */
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text);
+    margin: 2rem 0 1rem;
+  }
+
+  .steps-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .step-row {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.12s;
+  }
+  .step-row:last-child { border-bottom: none; }
+  .step-row:hover { background: #f8f8f6; }
+
+  .step-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .s1 .step-num, .s2 .step-num { background: var(--blue-light); color: var(--blue); }
+  .s3 .step-num { background: var(--teal-light); color: var(--teal); }
+  .s4 .step-num, .s5 .step-num { background: var(--amber-light); color: var(--amber); }
+
+  .step-body { flex: 1; }
+  .step-text { font-size: 13px; color: var(--text); line-height: 1.6; }
+  .step-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+  .step-chip {
+    font-size: 11px;
+    padding: 2px 9px;
+    border-radius: 20px;
+    background: var(--bg-surface);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+
+  /* ─── Legend ─── */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 1.5rem;
+    padding: 14px 18px;
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* ─── Footer ─── */
+  .site-footer {
+    background: var(--teal);
+    padding: 1.25rem 2rem;
+    text-align: center;
+  }
+  .site-footer p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+  .site-footer strong { color: rgba(255,255,255,0.8); font-weight: 500; }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 540px) {
+    .detail-grid { grid-template-columns: 1fr; }
+    .dcell { border-right: none; }
+    .dcell.full { grid-column: 1; }
+    .phase-head-note { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="logo">
+    <div class="logo-dots">
+      <span class="dim"></span><span></span><span class="bright"></span><span></span><span class="dim"></span>
+      <span></span><span class="bright"></span><span class="bright"></span><span class="bright"></span><span></span>
+      <span class="dim"></span><span class="bright"></span><span class="bright"></span><span class="bright"></span><span class="dim"></span>
+      <span></span><span class="bright"></span><span class="bright"></span><span class="bright"></span><span></span>
+      <span class="dim"></span><span></span><span class="bright"></span><span></span><span class="dim"></span>
+    </div>
+    <span class="logo-text">holiferm</span>
+  </div>
+  <span class="header-badge">Formula Reference · #24-0001</span>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Personal Care · COSMOS Certified</div>
+    <h1 class="hero-title">THE Shampoo<br><em>Formula Explorer</em></h1>
+    <p class="hero-sub">Click any ingredient to explore its origin, function, and role in the formula.</p>
+    <div class="hero-pills">
+      <span class="hero-pill">COSMOS certified</span>
+      <span class="hero-pill">&gt;97% natural origin</span>
+      <span class="hero-pill">Ultra mild</span>
+      <span class="hero-pill">pH 6.5–7.5</span>
+    </div>
+  </div>
+</div>
+
+<!-- Main -->
+<main class="main">
+
+  <!-- Phase A -->
+  <div class="phase-section pa">
+    <div class="phase-card">
+      <div class="phase-head">
+        <div class="phase-circle">A</div>
+        <div class="phase-head-text">
+          <div class="phase-head-title">Phase A — Base</div>
+          <div class="phase-head-desc">Water phase: solvent, thickener, humectant</div>
+        </div>
+        <div class="phase-head-note">Disperse &amp; hydrate first</div>
+      </div>
+      <div id="phase-a-ings"></div>
+    </div>
+  </div>
+
+  <!-- Phase B -->
+  <div class="phase-section pb">
+    <div class="phase-card">
+      <div class="phase-head">
+        <div class="phase-circle">B</div>
+        <div class="phase-head-text">
+          <div class="phase-head-title">Phase B — Actives</div>
+          <div class="phase-head-desc">Surfactant system: three-way biosurfactant blend</div>
+        </div>
+        <div class="phase-head-note">Add &amp; fold into Phase A</div>
+      </div>
+      <div id="phase-b-ings"></div>
+    </div>
+  </div>
+
+  <!-- Phase C -->
+  <div class="phase-section pc">
+    <div class="phase-card">
+      <div class="phase-head">
+        <div class="phase-circle">C</div>
+        <div class="phase-head-text">
+          <div class="phase-head-title">Phase C — Finish</div>
+          <div class="phase-head-desc">Preservation, fragrance, colour</div>
+        </div>
+        <div class="phase-head-note">Add last, adjust to taste</div>
+      </div>
+      <div id="phase-c-ings"></div>
+    </div>
+  </div>
+
+  <!-- Manufacturing -->
+  <h2 class="section-title">Manufacturing process</h2>
+  <div class="steps-card">
+    <div class="step-row s1">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-text">Disperse CMC powder into glycerin. Wetting the thickener in glycerin prevents lumps before water contact.</div>
+        <div class="step-chips"><span class="step-chip">Carboxymethyl cellulose</span><span class="step-chip">Glycerin</span></div>
+      </div>
+    </div>
+    <div class="step-row s2">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-text">Add warm deionised water and mix until the CMC fully hydrates and the base thickens evenly into a gel.</div>
+        <div class="step-chips"><span class="step-chip">Deionised water</span><span class="step-chip">Warm water aids hydration</span></div>
+      </div>
+    </div>
+    <div class="step-row s3">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-text">Add all Phase B surfactants and fold in gently. Avoid aggressive mixing to prevent excess foam formation.</div>
+        <div class="step-chips"><span class="step-chip">HoliSurf LF</span><span class="step-chip">Sodium cocoyl glutamate</span><span class="step-chip">Coco glucoside</span></div>
+      </div>
+    </div>
+    <div class="step-row s4">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-text">Add preservative, then fragrance and mica to desired scent and colour. Added last to prevent heat degradation.</div>
+        <div class="step-chips"><span class="step-chip">Preservative</span><span class="step-chip">Fragrance</span><span class="step-chip">Mica</span></div>
+      </div>
+    </div>
+    <div class="step-row s5">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <div class="step-text">Adjust pH to 6.5–7.5 using citric acid or sodium hydroxide. Lower pH increases viscosity; target is skin-compatible near-neutral.</div>
+        <div class="step-chips"><span class="step-chip">Target pH 6.5–7.5</span><span class="step-chip">Citric acid / NaOH</span><span class="step-chip">pH affects final viscosity</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item"><span class="origin-dot d-bio"></span>Bio / fermentation-derived</div>
+    <div class="legend-item"><span class="origin-dot d-mineral"></span>Mineral</div>
+    <div class="legend-item"><span class="origin-dot d-synth"></span>Semi-synthetic / variable</div>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <p><strong>Holiferm Manufacturing Limited</strong> · THE Shampoo #24-0001 · COSMOS certified · &gt;97% natural origin</p>
+</footer>
+
+<script>
+const data = {
+  a: [
+    { name:"Deionised water", inci:"Aqua", pct:64.80, tag:"solvent", tagLabel:"Solvent", origin:"mineral",
+      originLabel:"Purified water — ions removed to prevent formula instability and extend shelf life.",
+      fn:"The continuous phase carrying all other ingredients. Makes up nearly two-thirds of the formula by weight.",
+      hair:"No direct hair benefit — it's the medium everything else works in.",
+      cosmos:"Yes — water is COSMOS compliant by default.",
+      note:null, holiferm:false },
+    { name:"Carboxymethyl cellulose", inci:"Carboxymethyl cellulose", pct:1.00, tag:"thickener", tagLabel:"Thickener", origin:"bio",
+      originLabel:"Derived from plant cellulose (wood pulp or cotton) via controlled chemical modification.",
+      fn:"Swells in water to create a viscous gel network, giving the shampoo its body and flow-resistant texture.",
+      hair:"Provides slip during application and leaves a light conditioning film on the hair shaft.",
+      cosmos:"Yes — cellulose-derived, COSMOS certified.",
+      note:"Must be pre-dispersed in glycerin to hydrate evenly and prevent clumping.", holiferm:false },
+    { name:"Glycerin", inci:"Glycerin", pct:3.00, tag:"humectant", tagLabel:"Humectant", origin:"bio",
+      originLabel:"Byproduct of biodiesel or soap manufacturing from vegetable oils (palm-free options available).",
+      fn:"Draws moisture from the air into hair and scalp. Also acts as a processing aid for CMC dispersion in Step 1.",
+      hair:"Moisturises, softens, reduces static, and improves wet combability.",
+      cosmos:"Yes — natural origin, COSMOS certified.",
+      note:"Doubles as the dispersion medium for CMC before water is added.", holiferm:false }
+  ],
+  b: [
+    { name:"HoliSurf LF", inci:"Glycolipids", pct:10.00, tag:"holisurf", tagLabel:"Holiferm biosurfactant", origin:"bio",
+      originLabel:"Fermentation-derived sophorolipid biosurfactant — produced by yeast from renewable feedstocks.",
+      fn:"Primary biosurfactant. Reduces surface tension to lift and suspend sebum, oil, and dirt from hair and scalp for easy rinsing.",
+      hair:"Exceptionally mild — preserves the scalp's natural microbiome and moisture barrier far better than SLS/SLES.",
+      cosmos:"Yes — COSMOS certified. The key contributor to >97% natural origin claim.",
+      note:"Sophorolipid lactone form, optimised for personal care. A Holiferm-produced active ingredient.", holiferm:true },
+    { name:"Sodium cocoyl glutamate", inci:"Sodium cocoyl glutamate", pct:10.00, tag:"surfactant", tagLabel:"Surfactant", origin:"bio",
+      originLabel:"Amino acid-based — derived from coconut fatty acids combined with fermentation-derived glutamic acid.",
+      fn:"Mild co-surfactant that synergises with HoliSurf LF and coco glucoside. Boosts foam quality and cleansing performance.",
+      hair:"Skin-identical amino acid backbone makes it highly scalp-compatible, adding a conditioning feel and reducing irritation.",
+      cosmos:"Yes — COSMOS certified.",
+      note:"Among the mildest surfactant classes available. Common in baby and sensitive skin formulations.", holiferm:false },
+    { name:"Coco glucoside", inci:"Coco glucoside", pct:10.00, tag:"surfactant", tagLabel:"Surfactant", origin:"bio",
+      originLabel:"APG (alkyl polyglucoside) surfactant — made from coconut oil fatty alcohols and glucose derived from starch.",
+      fn:"Non-ionic co-surfactant. Works across a wide pH range, boosts foam volume, and improves rinse-off feel.",
+      hair:"Very gentle, biodegradable, and non-irritating. Rounds out the surfactant system and improves overall lather texture.",
+      cosmos:"Yes — COSMOS certified.",
+      note:"Non-ionic nature means compatibility with essentially all other ingredients and electrolytes.", holiferm:false }
+  ],
+  c: [
+    { name:"Preservative", inci:"Preservative", pct:1.00, tag:"preservative", tagLabel:"Preservative", origin:"synth",
+      originLabel:"Varies — COSMOS-approved options include phenoxyethanol, benzyl alcohol, or plant-derived alternatives.",
+      fn:"Prevents microbial growth (bacteria, yeast, mould) throughout the product's shelf life. Required in any water-containing formula.",
+      hair:"No direct benefit — a safety-critical functional ingredient.",
+      cosmos:"Must select a COSMOS-approved preservative to maintain certification.",
+      note:"Added last to avoid heat degradation, as many preservative systems are heat-sensitive.", holiferm:false },
+    { name:"Fragrance", inci:"Parfum", pct:0.20, pctLabel:"0.2–0.4%", tag:"fragrance", tagLabel:"Fragrance", origin:"synth",
+      originLabel:"Natural or synthetic aromatic blend. COSMOS requires ≥50% natural origin for certified fragrances.",
+      fn:"Provides the sensory identity of the product — scent during use and residual scent after rinsing.",
+      hair:"Some fragrance ingredients have mild conditioning or anti-static properties.",
+      cosmos:"COSMOS-compliant fragrance required to maintain certification.",
+      note:"0.2–0.4% range gives the formulator latitude to adjust intensity to preference.", holiferm:false },
+    { name:"Mica", inci:"Mica", pct:null, pctLabel:"q.s.", tag:"colour", tagLabel:"Colour", origin:"mineral",
+      originLabel:"Mined silicate mineral — often coated with titanium dioxide or iron oxides for colour and shimmer effects.",
+      fn:"Provides colour, shimmer, and visual appeal. Added q.s. (quantum satis — as much as needed for desired appearance).",
+      hair:"No functional hair benefit — purely aesthetic.",
+      cosmos:"Yes — mineral origin, COSMOS permitted.",
+      note:"q.s. = 'as much as sufficient.' Formulator adjusts to achieve desired colour, opacity, and shimmer level.", holiferm:false }
+  ]
+};
+
+const tagClasses = {
+  surfactant:"tag-surfactant", holisurf:"tag-holisurf", solvent:"tag-solvent",
+  thickener:"tag-thickener", humectant:"tag-humectant", preservative:"tag-preservative",
+  fragrance:"tag-fragrance", colour:"tag-colour"
+};
+const originClasses = { bio:"d-bio", mineral:"d-mineral", synth:"d-synth" };
+const originLabels = { bio:"Bio/fermentation-derived", mineral:"Mineral", synth:"Semi-synthetic" };
+
+function buildPhase(containerId, phase, ings) {
+  const container = document.getElementById(containerId);
+  ings.forEach((ing, i) => {
+    const id = `${phase}-${i}`;
+    const barW = ing.pct ? Math.round((ing.pct / 64.8) * 100) : 4;
+    const pctLabel = ing.pctLabel || (ing.pct ? ing.pct.toFixed(2) + '%' : 'q.s.');
+
+    // Row
+    const row = document.createElement('div');
+    row.className = 'ing-row';
+    row.setAttribute('data-id', id);
+    row.innerHTML = `
+      <div class="ing-bar-wrap">
+        <div class="ing-bar-track"><div class="ing-bar-fill" style="width:${barW}%"></div></div>
+      </div>
+      <div class="ing-pct">${pctLabel}</div>
+      <div class="ing-name">${ing.name}${ing.holiferm ? '<span class="ing-star">★</span>' : ''}</div>
+      <span class="tag ${tagClasses[ing.tag]}">${ing.tagLabel}</span>
+      <span class="chevron">›</span>
+    `;
+    container.appendChild(row);
+
+    // Panel
+    const panel = document.createElement('div');
+    panel.className = 'detail-panel';
+    panel.setAttribute('data-id', id);
+    panel.innerHTML = `
+      <div class="detail-grid">
+        <div class="dcell">
+          <div class="dlabel">INCI name</div>
+          <div class="dval">${ing.inci}</div>
+        </div>
+        <div class="dcell">
+          <div class="dlabel">Amount</div>
+          <div class="dval">${pctLabel}${ing.pct ? ' by weight' : ' (to desired colour)'}</div>
+        </div>
+        <div class="dcell full">
+          <div class="dlabel">Origin</div>
+          <div class="dval">
+            <span class="origin-dot ${originClasses[ing.origin]}"></span>
+            ${ing.originLabel}
+            ${ing.holiferm ? '<span class="hf-badge">Holiferm</span>' : ''}
+          </div>
+        </div>
+        <div class="dcell full">
+          <div class="dlabel">Role in formula</div>
+          <div class="dval">${ing.fn}</div>
+        </div>
+        <div class="dcell full">
+          <div class="dlabel">Benefit to hair &amp; scalp</div>
+          <div class="dval">${ing.hair}</div>
+        </div>
+        <div class="dcell">
+          <div class="dlabel">COSMOS compliant?</div>
+          <div class="dval">${ing.cosmos}</div>
+        </div>
+        <div class="dcell">
+          <div class="dlabel">Formulation note</div>
+          <div class="dval">${ing.note || '—'}</div>
+        </div>
+      </div>
+    `;
+    container.appendChild(panel);
+
+    row.addEventListener('click', () => {
+      const isOpen = panel.classList.contains('open');
+      document.querySelectorAll('.detail-panel.open').forEach(p => p.classList.remove('open'));
+      document.querySelectorAll('.ing-row.open').forEach(r => r.classList.remove('open'));
+      if (!isOpen) {
+        panel.classList.add('open');
+        row.classList.add('open');
+      }
+    });
+  });
+}
+
+buildPhase('phase-a-ings', 'a', data.a);
+buildPhase('phase-b-ings', 'b', data.b);
+buildPhase('phase-c-ings', 'c', data.c);
+</script>
+</body>
+</html>
