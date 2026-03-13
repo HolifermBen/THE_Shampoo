@@ -64,24 +64,15 @@
   .logo {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
     text-decoration: none;
   }
 
-  .logo-dots {
-    display: grid;
-    grid-template-columns: repeat(5, 6px);
-    gap: 2.5px;
+  .logo img {
+    height: 32px;
+    width: auto;
+    display: block;
   }
-
-  .logo-dots span {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.6);
-  }
-  .logo-dots span.bright { background: rgba(255,255,255,1); }
-  .logo-dots span.dim { background: rgba(255,255,255,0.25); }
 
   .logo-text {
     font-family: 'DM Sans', sans-serif;
@@ -422,13 +413,7 @@
 <!-- Header -->
 <header class="site-header">
   <div class="logo">
-    <div class="logo-dots">
-      <span class="dim"></span><span></span><span class="bright"></span><span></span><span class="dim"></span>
-      <span></span><span class="bright"></span><span class="bright"></span><span class="bright"></span><span></span>
-      <span class="dim"></span><span class="bright"></span><span class="bright"></span><span class="bright"></span><span class="dim"></span>
-      <span></span><span class="bright"></span><span class="bright"></span><span class="bright"></span><span></span>
-      <span class="dim"></span><span></span><span class="bright"></span><span></span><span class="dim"></span>
-    </div>
+    <img src="holiferm-logo.png" alt="Holiferm">
     <span class="logo-text">holiferm</span>
   </div>
   <span class="header-badge">Formula Reference · #24-0001</span>
